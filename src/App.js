@@ -1,25 +1,35 @@
 import React from "react";
 import "./styles.css";
 import TempChecker from "./TempChecker";
+import TempInput from "./TempInput";
 
 class Calculator extends React.Component {
   constructor() {
-    super();
-    // this.handleInput = this.handleInput.bind(this);
-    this.state = { temp: 10 };
+    super()
+    this.handleTempChange = this.handleTempChange.bind(this);
+    this.state = { temp: 11 }
   }
 
-  handleInput(e) {
+  handleTempChange(temp) {
     this.setState({
-      temp: e.target.value
-    });
+      temp: temp
+    })
   }
 
   render() {
     return (
       <div className="calculator">
-        <h1>{this.state.temp}</h1>
-        <input value={this.state.temp} onChange={this.handleInput} />
+        <TempInput 
+          temp={this.state.temp} 
+          onTempChange={this.handleTempChange} 
+          unit="Celsius"
+        />
+        <TempInput 
+          temp={this.state.temp} 
+          onTempChange={this.handleTempChange} 
+          unit="Fahrenheit"
+        />
+        <TempChecker temp={this.state.temp} />
       </div>
     );
   }
